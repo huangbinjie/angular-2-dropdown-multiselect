@@ -12,7 +12,7 @@ export class MultiSelectSearchFilter implements PipeTransform {
     return options.filter((option: IMultiSelectOption) => {
       return matchPredicate(option) ||
         (typeof (option.parentId) === 'undefined' && getChildren(option).some(matchPredicate)) ||
-        (typeof (option.parentId) !== 'undefined' && matchPredicate(getParent(option)));
+        (typeof (option.parentId) !== 'undefined' && matchPredicate(getParent(option)!));
     });
   }
 }

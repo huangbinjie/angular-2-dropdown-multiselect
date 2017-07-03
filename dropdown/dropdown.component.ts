@@ -53,7 +53,7 @@ export class MultiselectDropdown implements OnInit, OnChanges, DoCheck, ControlV
       if (target === this.element.nativeElement) {
         parentFound = true;
       }
-      target = target.parentElement;
+      target = target.parentElement!;
     }
     if (!parentFound) {
       this.isVisible = false;
@@ -96,7 +96,7 @@ export class MultiselectDropdown implements OnInit, OnChanges, DoCheck, ControlV
 
   constructor(private element: ElementRef,
     differs: IterableDiffers) {
-    this.differ = differs.find([]).create(null);
+    this.differ = differs.find([]).create(undefined);
   }
 
   getItemStyle(option: IMultiSelectOption): any {
@@ -156,7 +156,7 @@ export class MultiselectDropdown implements OnInit, OnChanges, DoCheck, ControlV
     }
   }
 
-  validate(_c: AbstractControl): { [key: string]: any; } {
+  validate(_c: AbstractControl): { [key: string]: any; } | null {
     return (this.model && this.model.length) ? null : {
       required: {
         valid: false,
